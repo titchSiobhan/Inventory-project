@@ -1,0 +1,12 @@
+
+
+<div class="productCard">
+   
+    <p>Name: <%= product.item %></p>
+    <p>Product code: <%= product.product_code %></p>
+    
+    <p>Quantity: <%= product.quantity %></p> 
+    <a href="/shop/<%= product.product_code %>">Open</a>
+    <a href="/shop/delete/<%= product.product_code %>" class="close">X</a>
+</div>
+

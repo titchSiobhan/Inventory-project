@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is a pet shop</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <%- include('navbar', {links: links}) %>
+   <div class="home">
+    <h1>This is a pet shop</h1>
+   
+    <h2>Categories</h2>
+
+    <div class="categoryBtns">
+
+        <% for (let i =0; i < categories.length; i++) { %>
+        <a href="/category/<%= categories[i].category %>"><%- categories[i].category %></a>
+        <% } %>
+    </div>
+    </div>
+
+</body>
+</html>

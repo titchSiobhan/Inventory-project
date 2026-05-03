@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.item %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar', {links: links}) %>
+    <div class="singleProduct">
+        <a href="/shop/<%= product.product_code %>/edit">Edit Product</a>
+    <div class="product">
+        <h3>Name: </h3><p> <%= product.item %></p>
+        <h3>Description: </h3><p> <%= product.description %></p>
+        <h3>Price: </h3><p>£<%= product.price %></p>
+        <h3>Quantity:</h3> <p> <%= product.quantity %></p>
+        <h3>Category:</h3> <p> <%= product.category %></p>
+        <h3>Product code:</h3> <p>Product code: <%= product.product_code %></p>
+    </div>
+    </div>
+</body>
+</html>

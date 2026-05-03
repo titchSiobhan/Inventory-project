@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>management</title>
+    <link rel="stylesheet" href="/styles.css">
+    <% if (error) { %>
+        <script>
+            alert('<%= error %>');
+        </script>
+    <% } %>
+</head>
+<body>
+    <%- include('navbar', {links}) %>
+<section class="management">
+    <h1>Manage the stock</h1>
+<div class="form">
+    <form action="/shop/add" method="POST">
+        <label for="item">Item</label>
+        <input type="text" name="item" id="item" placeholder="Item Name">
+        <label for="description">Description</label>
+        <input type="text"name="description" id="description" placeholder="Description">
+        <label for="price">Price</label>
+        <input type="text" name="price" id="price" pattern="^\d+\.\d{2}$" placeholder="0.00">
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" placeholder="0">
+        <label for="category">Category</label>
+        <%- include('categories') %>
+        <input type="submit" value="Submit" class="btn">
+    </form>
+    </div>
+
+    <h2>Add more categories</h2>
+    <div class="form">
+    <form action="/management" method="POST">
+    <input type="text" name="category" id="category" placeholder="Category Name">
+    <input type="submit" value="Submit" class="btn">
+    </form>
+    </div>
+
+    <div class="categories">
+    <%- include('showCategories') %>
+    </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<div >
+    <% for (let i =0; i < categories.length; i++) { %>
+        <div class="displayCategory">
+        <p><%= categories[i].category %></p> <a href="management/delete/<%= categories[i].id %>" class="close">X</a>
+        </div>
+        <% } %>
+</div>

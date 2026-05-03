@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.item %> edit</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar', {links: links}) %>
+    <div class="edit">
+    <h2>Edit</h2>
+    <form action="/shop/<%= product.product_code %>/edit" method="post">
+        <input type="hidden" name="product_code" value="<%= product.product_code %>">
+        <label for="item">Item</label>
+        <input type="text" name="item" id="item" value="<%= product.item %>">
+        <label for="description">Description</label>
+        <input type="text"name="description" id="description" value="<%= product.description %>">
+        <label for="price">Price</label>
+        <input type="text" name="price" id="price" pattern="^\d+\.\d{2}$" value="<%= product.price %>">
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" value="<%= product.quantity %>">
+        <label for="category">Category</label>
+        <%- include('categories') %>
+        <input type="submit" value="Submit" class="btn">
+    </form>
+    </div>
+</body>
+</html>
