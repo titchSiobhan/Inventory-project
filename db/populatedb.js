@@ -1,22 +1,23 @@
-const { Client} = require('pg');
-const randomNum = function (length = 11) {
-		return Math.random().toString(36).substring(2, length + 2);
-}
+const { Client } = require('pg');
 
+const randomNum = function (length = 11) {
+  return Math.random().toString(36).substring(2, length + 2);
+};
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS inventory (
-id SERIAL PRIMARY KEY,
-item VARCHAR (255) NOT NULL,
-description VARCHAR (255) NOT NULL,
-price DEC(6,2) NOT NULL,
-quantity INT NOT NULL, 
-category VARCHAR(255) NOT NULL,
-product_code VARCHAR(255) NOT NULL UNIQUE
+  id SERIAL PRIMARY KEY,
+  item VARCHAR(255) NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  price DEC(6,2) NOT NULL,
+  quantity INT NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  product_code VARCHAR(255) NOT NULL UNIQUE
 );
-CREATE TABLE IF NOT EXISTS categories (
-    id SERIAL ,
-    category VARCHAR(255) PRIMARY KEY UNIQUE
+
+CREATE TABLE IF NOT EXISTS category (
+  id SERIAL,
+  category VARCHAR(255) PRIMARY KEY UNIQUE
 );
 
 INSERT INTO inventory (item, description, price, quantity, category, product_code)
@@ -32,26 +33,25 @@ VALUES
 ('Dog Chew Toy', 'Durable rubber chew toy', 7.99, 18, 'Toy', '${randomNum()}'),
 ('Fish Flakes 200g', 'High‑protein tropical fish food', 4.99, 25, 'Food', '${randomNum()}');
 
-
 INSERT INTO category (category)
 VALUES ('Clothes'),
 ('Furniture'),
 ('Food'),
 ('Toy'),
-('Accessories')
-`
+('Accessories');
+`;
 
 async function main() {
-    console.log('seeding....');
-   const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
+  console.log('seeding....');
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
+  });
 
-    await client.connect();
-    await client.query(SQL);
-    await client.end();
-    console.log('done');
+  await client.connect();
+  await client.query(SQL);
+  await client.end();
+  console.log('done');
 }
 
 if (require.main === module) {
