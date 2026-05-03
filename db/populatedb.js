@@ -43,9 +43,11 @@ VALUES ('Clothes'),
 
 async function main() {
     console.log('seeding....');
-    const client = new Client({
-        connectionString: 'postgresql://postgres:purple2Elephant!@localhost:5432/product_listings'
-    });
+   const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
     await client.connect();
     await client.query(SQL);
     await client.end();
